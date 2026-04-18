@@ -2,7 +2,6 @@ import useTodos from './hooks/useTodos'
 import Heading from './components/Heading'
 import CreateTask from './components/CreateTask'
 import TodoTask from './components/TodoTask'
-import { RiH1 } from 'react-icons/ri'
 import './App.css'
 
 
@@ -24,9 +23,13 @@ function App() {
         </div>
 
         <div className="todo ">
+          <div className="todoHeader">
+            <p className="todoEyebrow">Today&apos;s list</p>
+            <p className="todoMeta">{todoList?.length || 0} task{todoList?.length === 1 ? '' : 's'}</p>
+          </div>
           {todoList? todoList.map((todo, index)=> <TodoTask  
                                                     key={index} 
-                                                    index={index} 
+                                                    index={index + 1} 
                                                     id={todo._id} 
                                                     isCompleted={todo.isCompleted} 
                                                     todoText={todo.todoText} 

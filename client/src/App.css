@@ -1,124 +1,447 @@
-.main{
+.main {
+    position: relative;
+    width: min(880px, calc(100% - 28px));
+    margin: 0 auto;
+    padding: 34px 0 30px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    gap: 14px;
 }
-h1{
-    font-size: 19px;
+
+.main::before,
+.main::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    border-radius: 999px;
+    filter: blur(10px);
+    opacity: 0.8;
 }
-.button{
-    display: flex;
+
+.main::before {
+    width: 260px;
+    height: 260px;
+    top: 12px;
+    left: -70px;
+    background: radial-gradient(circle, rgba(118, 255, 200, 0.28), transparent 68%);
+}
+
+.main::after {
+    width: 320px;
+    height: 320px;
+    right: -90px;
+    bottom: 40px;
+    background: radial-gradient(circle, rgba(90, 158, 255, 0.22), transparent 70%);
+}
+
+h1 {
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    line-height: 1.2;
+}
+
+.button {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    padding: 7px;
-    border: 2px solid;
-    border-radius: 12px;
-} 
-.heading{
-    border: 2px solid;
-    border-radius: 20px;
-    margin: 20px;
-    width: 30vw;
-    height:7vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-style: italic;
+    gap: 8px;
+    min-height: 42px;
+    padding: 0 15px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+    color: #f4f7fb;
+    font-size: 0.92rem;
     font-weight: 600;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+    box-shadow: 0 12px 24px rgba(5, 10, 20, 0.18);
+    backdrop-filter: blur(14px);
 }
-.create{
-    border: 2px solid;
-    border-radius: 20px;
-    margin: 20px;
-    width: 45vw;
-    height: 10vh;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-.createTaskContainer{
-    display: flex;
-    /* justify-content:space-between ; */
-    align-items: center;
-    width: 70%;
-    height: 35px;
-    border: 2px solid;
-    border-radius: 9px;
-}
-.icon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px 5px 5px 10px;
 
+.button:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.24);
+    box-shadow: 0 20px 40px rgba(4, 10, 20, 0.3);
 }
-.createTaskText{
-    height: 30px;
-    outline: none;
-    border: none;
-    padding-left: 5px;
-    width: 90%;
+
+.button:active {
+    transform: translateY(0);
 }
-.createTaskButton{
-    
-    background-color: rgb(0, 66, 0);
-} 
-.todo{
-    border: 2px solid;
-    border-radius: 20px;
-    margin: 20px;
-    width:  50vw;
-    min-height: 60vh;
+
+.heading,
+.create,
+.todo {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(145deg, rgba(8, 15, 30, 0.78), rgba(12, 20, 40, 0.48));
+    box-shadow: 0 18px 40px rgba(3, 8, 20, 0.26);
+    backdrop-filter: blur(18px);
+}
+
+.heading::before,
+.create::before,
+.todo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.08), transparent 24%, transparent 76%, rgba(255, 255, 255, 0.05));
+    pointer-events: none;
+}
+
+.heading {
+    width: min(760px, 100%);
+    min-height: 0;
+    padding: 24px 26px;
+    border-radius: 26px;
+}
+
+.headingContent {
+    width: 100%;
     display: flex;
-    /* justify-content: center; */
-    align-items: center;
     flex-direction: column;
+    gap: 10px;
 }
-.todoTaskContainer{
-    width: 95%;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    min-height: 10vh;
-    display: flex;
-    justify-content:space-around;
-    align-items: center;
 
+.headingLabel {
+    display: inline-flex;
+    width: fit-content;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #9ed8c0;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
-.todoTask{
-    width: 90%;
-    min-height: 100%;
-    border: 2px solid;
-    border-radius: 15px;
 
+.headingText {
+    max-width: 12ch;
+    font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.055em;
+    color: #f9fbff;
+    text-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+}
+
+.headingSubtext {
+    max-width: 42ch;
+    color: rgba(231, 237, 247, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.create {
+    width: min(760px, 100%);
+    min-height: 0;
+    padding: 16px;
+    border-radius: 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 12px;
 }
-.todoTextContainer{
-    width: 70%;
+
+.createTaskContainer {
+    flex: 1;
+    min-height: 52px;
     display: flex;
     align-items: center;
+    gap: 10px;
+    padding: 0 14px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
-.todoTaskContainer div{
-    margin: 5px;
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(114, 250, 197, 0.16), rgba(90, 158, 255, 0.14));
+    color: #8deac6;
+    font-size: 0.95rem;
+    flex-shrink: 0;
 }
-.editAndComplete{
-    width: 25%;
+
+.createTaskText {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #f5f8ff;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.createTaskText::placeholder {
+    color: rgba(230, 236, 248, 0.5);
+}
+
+.createTaskButton {
+    min-width: 140px;
+    background: linear-gradient(135deg, #7af0c6, #4e86ff);
+    color: #05111d;
+    border-color: transparent;
+    box-shadow: 0 14px 26px rgba(78, 134, 255, 0.2);
+}
+
+.createTaskButton:hover {
+    border-color: transparent;
+    box-shadow: 0 24px 50px rgba(122, 240, 198, 0.18), 0 18px 40px rgba(78, 134, 255, 0.28);
+}
+
+.todo {
+    width: min(760px, 100%);
+    min-height: 260px;
+    padding: 16px;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+}
+
+.todoHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 2px 2px 10px;
+}
+
+.todoEyebrow,
+.todoMeta {
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(222, 231, 245, 0.56);
+}
+
+.todoMeta {
+    color: rgba(158, 216, 192, 0.78);
+}
+
+.todo > h1 {
+    min-height: 180px;
+    display: grid;
+    place-items: center;
+    color: rgba(237, 242, 252, 0.72);
+    text-align: center;
+    font-size: 0.98rem;
+}
+
+.todoTaskContainer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: center;
+}
+
+.todoTask {
+    position: relative;
+    min-height: 72px;
+    padding: 14px 14px 14px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.025));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.todoTask:hover {
+    transform: translateY(-2px);
+    border-color: rgba(141, 234, 198, 0.22);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.18);
+}
+
+.todoTaskContainer.isDone .todoTask {
+    background: linear-gradient(135deg, rgba(122, 240, 198, 0.12), rgba(94, 123, 255, 0.08));
+    border-color: rgba(122, 240, 198, 0.24);
+}
+
+.todoTaskContainer.isDone .todoText,
+.todoTaskContainer.isDone .index,
+.todoTaskContainer.isDone .todoStatus {
+    color: rgba(213, 255, 239, 0.82);
+}
+
+.todoTaskContainer.isDone .todoText {
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+}
+
+.todoTextContainer {
+    min-width: 0;
+    width: 100%;
     display: flex;
     align-items: center;
-    gap: 3px;
+    gap: 12px;
+}
 
+.todoCopy {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
 
+.todoStatus {
+    font-size: 0.73rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(155, 170, 194, 0.72);
 }
-.editAndComplete button{
-    margin: 2px;
+
+.index {
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #93a3bf;
+    font-size: 0.82rem;
+    font-weight: 700;
+    flex-shrink: 0;
 }
-.editTodo{
-    border-radius: 30px;
+
+.todoText {
+    color: #f4f8ff;
+    font-size: 0.96rem;
+    line-height: 1.45;
+    word-break: break-word;
 }
-.deleteTodo{
-    padding: 10px;
-    border-radius: 30px;
+
+.todoTaskContainer div {
+    margin: 0;
+}
+
+.editAndComplete {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.editAndComplete button {
+    margin: 0;
+}
+
+.editTodo {
+    width: 42px;
+    padding: 0;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(255, 196, 102, 0.2), rgba(255, 140, 66, 0.14));
+    color: #ffd489;
+}
+
+.todoComplete {
+    background: linear-gradient(135deg, rgba(114, 250, 197, 0.18), rgba(96, 170, 255, 0.16));
+    color: #e8fff7;
+}
+
+.deleteTodo {
+    width: 48px;
+    min-height: 48px;
+    padding: 0;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(255, 120, 120, 0.18), rgba(255, 77, 109, 0.16));
+    color: #ffd7dc;
+}
+
+@media (max-width: 820px) {
+    .main {
+        width: min(100% - 20px, 100%);
+        padding-top: 22px;
+    }
+
+    .heading,
+    .create,
+    .todo {
+        border-radius: 24px;
+    }
+
+    .heading {
+        padding: 20px 18px;
+    }
+
+    .create {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .createTaskButton {
+        width: 100%;
+    }
+
+    .todoTaskContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .deleteTodo {
+        width: 100%;
+        min-height: 46px;
+    }
+
+    .todoTask {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .editAndComplete {
+        justify-content: stretch;
+    }
+
+    .editAndComplete .button {
+        flex: 1;
+    }
+}
+
+@media (max-width: 560px) {
+    .main {
+        padding-bottom: 18px;
+        gap: 12px;
+    }
+
+    .headingText {
+        max-width: 10ch;
+    }
+
+    .headingSubtext {
+        font-size: 0.88rem;
+    }
+
+    .todo {
+        padding: 14px;
+    }
+
+    .todoTask {
+        padding: 14px;
+        border-radius: 18px;
+    }
+
+    .todoTextContainer {
+        align-items: flex-start;
+    }
+
+    .index {
+        width: 34px;
+        height: 34px;
+        border-radius: 12px;
+    }
 }
