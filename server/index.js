@@ -6,9 +6,9 @@ let dotenv = require("dotenv")
 
 
 const app = express()
+dotenv.config()
 const PORT = process.env.PORT
 const MONGODB_URL = process.env.MONGODB_URL
-dotenv.config()
 
 
 
@@ -27,5 +27,7 @@ connectDB(MONGODB_URL).then(()=>{
     app.listen(PORT, ()=>{
         console.log(`app listening on port ${PORT}`)
     })
+}).catch((error)=>{
+    console.error("server startup failed", error.message)
 })
 

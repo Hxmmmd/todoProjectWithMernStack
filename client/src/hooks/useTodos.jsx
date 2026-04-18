@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react"
-import Crud from "../model/fetching"
+import Crud from "../model/todoMeathod"
 
 const URL = "http://localhost:3000/todos"
 const CRUD = new Crud(URL)
@@ -9,9 +9,14 @@ const useTodos = () => {
 
     useEffect(() => {
         const fetchData = async ()=>{
-            const data = await CRUD.getTodos()
-            console.log("current location useEffect",data)
-            setTodoList(data)
+            try {
+                const data = await CRUD.getTodos()
+                console.log("current location useEffect",data)
+                setTodoList(data)
+            } catch (error) {
+                console.error(error.message)
+                setTodoList([])
+            }
         }
         fetchData()
     }, [])
@@ -19,34 +24,46 @@ const useTodos = () => {
     const createTodo = useCallback( async(ref) => {
         const valObj = ref.current.value
         if(valObj){
-            const obj = {
-                todoText: valObj,
-                isCompleted: false
-            }
-            let data = await CRUD.PostTodo(obj)
-            console.log(data)
-            setTodoList( prev => [...prev, {_id: data._id, todoText: data.todoText, isCompleted: false}])
+            try {
+                const obj = {
+                    todoText: valObj,
+                    isCompleted: false
+                }
+                let data = await CRUD.PostTodo(obj)
+                console.log(data)
+                setTodoList( prev => [...prev, {_id: data._id, todoText: data.todoText, isCompleted: false}])
 
-            ref.current.value = ""
+                ref.current.value = ""
+            } catch (error) {
+                console.error(error.message)
+            }
         }
     },[])
 
     const completeTodo = useCallback( async(id, isCompleted, setState) => {
-        let obj = {
-        isCompleted : !isCompleted
+        try {
+            let obj = {
+            isCompleted : !isCompleted
+            }
+            let data = await CRUD.TaskCompleted(id, obj)
+            console.log(data)
+            setState((!isCompleted))
+        } catch (error) {
+            console.error(error.message)
         }
-        let data = await CRUD.TaskCompleted(id, obj)
-        console.log(data)
-        setState((!isCompleted)) 
     },[])
 
 
 
 
     const deleteTodo = useCallback( async(id) => {
-        const data = await CRUD.DeleteTodo(id)
-        console.log(data)
-        setTodoList( prev => prev.filter(todo => todo._id !== id) )
+        try {
+            const data = await CRUD.DeleteTodo(id)
+            console.log(data)
+            setTodoList( prev => prev.filter(todo => todo._id !== id) )
+        } catch (error) {
+            console.error(error.message)
+        }
     } ,[])
 
     return {
