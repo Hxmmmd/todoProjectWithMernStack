@@ -1,6 +1,6 @@
 const express = require('express')
-const connectDB = require('./config/connectDb')
-const todolist = require('./routes/todolist')
+const connectDB = require('./config/connectDB')
+const todolist = require('./routes/todoList')
 const cors = require('cors')
 let dotenv = require("dotenv")
 
