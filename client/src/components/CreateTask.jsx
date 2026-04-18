@@ -4,19 +4,26 @@ import { useRef } from "react"
 const CreateTask = ({onCreateHandler}) => {
     const createTaskText = useRef()
 
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        onCreateHandler(createTaskText)
+    }
+
     return (
     <>
 
-        <div className="createTaskContainer">
+        <form onSubmit={handleSubmit} className="createTaskForm">
+            <div className="createTaskContainer">
 
-            <div className="icon">
-                <FaRegPlusSquare/>
+                <div className="icon">
+                    <FaRegPlusSquare/>
+                </div>
+
+                <input  type="text" ref={createTaskText} placeholder="Enter your todo here" className="createTaskText"/>
             </div>
 
-            <input  type="text" ref={createTaskText} placeholder="Enter your todo here" className="createTaskText"/>
-        </div>
-
-        <button onClick={()=> {onCreateHandler(createTaskText)}} className="createTaskButton button">Create task</button>
+            <button type="submit" className="createTaskButton button">Create task</button>
+        </form>
         
     </>
     )
