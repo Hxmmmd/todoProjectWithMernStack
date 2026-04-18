@@ -14,7 +14,7 @@ const MONGODB_URL = process.env.MONGODB_URL
 
 // cors policy 
 app.use(cors({
-    origin: "http://localhost:5173"
+    origin: process.env.CLIENT_URL
 }))
 
 // these are some important middlewares so your express app can Read JSON 

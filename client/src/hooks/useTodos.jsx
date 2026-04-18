@@ -40,14 +40,19 @@ const useTodos = () => {
         }
     },[])
 
-    const completeTodo = useCallback( async(id, isCompleted, setState) => {
+    const completeTodo = useCallback( async(id, isCompleted,) => {
         try {
             let obj = {
             isCompleted : !isCompleted
             }
             let data = await CRUD.TaskCompleted(id, obj)
+            
+            setTodoList(prev =>
+                prev.map(todo =>
+                    todo._id === id? { ...todo, isCompleted: !isCompleted } : todo
+                )
+            )
             console.log(data)
-            setState((!isCompleted))
         } catch (error) {
             console.error(error.message)
         }
