@@ -37,6 +37,18 @@ class Crud{
             throw buildRequestError(error, "Failed to create todo")
         }
     }
+    
+    async PatchTodo(id,obj){
+        try {
+            let route = `${this.URL}/${id}`
+            const response = await axios.patch(route, obj)
+            return response.data
+        } catch (error) {
+            console.error("some error happened while updating todo", error)
+            throw buildRequestError(error, "Failed to update todo")
+        }
+    }
+    
     async DeleteTodo(id){
         try {
             let route = `${this.URL}/${id}`
@@ -47,16 +59,7 @@ class Crud{
             throw buildRequestError(error, "Failed to delete todo")
         }
     }
-    async TaskCompleted(id,obj){
-        try {
-            let route = `${this.URL}/${id}`
-            const response = await axios.patch(route, obj)
-            return response.data
-        } catch (error) {
-            console.error("some error happened while updating todo", error)
-            throw buildRequestError(error, "Failed to update todo")
-        }
-    }
+    
 
 }
 export default Crud

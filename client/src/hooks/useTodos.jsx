@@ -30,9 +30,13 @@ const useTodos = () => {
                     isCompleted: false
                 }
                 let data = await CRUD.PostTodo(obj)
+                
                 console.log(data)
-                setTodoList( prev => [...prev, {_id: data._id, todoText: data.todoText, isCompleted: false}])
-
+                
+                setTodoList( prev => 
+                    [...prev, {_id: data._id, todoText: data.todoText, isCompleted: false}]
+                )
+                
                 ref.current.value = ""
             } catch (error) {
                 console.error(error.message)
@@ -45,7 +49,7 @@ const useTodos = () => {
             let obj = {
             isCompleted : !isCompleted
             }
-            let data = await CRUD.TaskCompleted(id, obj)
+            let data = await CRUD.PatchTodo(id, obj)
             
             setTodoList(prev =>
                 prev.map(todo =>
@@ -71,11 +75,35 @@ const useTodos = () => {
         }
     } ,[])
 
+    const editTodo = useCallback( async(id, ref) => {
+        try {
+            let newTodoText = ref.current.value
+
+            let obj ={
+                todoText : newTodoText
+            }
+            let data = await CRUD.PatchTodo(id, obj)
+            console.log(data)
+            setTodoList(prev =>
+                prev.map(todo =>
+                    todo._id === id? { ...todo, todoText: newTodoText } : todo
+                )
+            )
+            // console.log(data)
+        } catch (error) {
+            console.error(error.message)
+        }
+        
+        
+
+    },[])
+
     return {
         todoList,
         createTodo,
         completeTodo,
-        deleteTodo
+        editTodo,
+        deleteTodo,
     }
 } 
 

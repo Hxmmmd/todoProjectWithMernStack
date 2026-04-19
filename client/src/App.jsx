@@ -8,7 +8,7 @@ import './App.css'
 
 function App() {
 
-  const {todoList, createTodo,completeTodo,deleteTodo} = useTodos()
+  const {todoList, createTodo, completeTodo, editTodo, deleteTodo} = useTodos()
   const activeTodos = todoList?.filter((todo) => !todo.isCompleted) || []
   const completedTodos = todoList?.filter((todo) => todo.isCompleted) || []
 
@@ -45,6 +45,7 @@ function App() {
                                                                       isCompleted={todo.isCompleted}
                                                                       todoText={todo.todoText}
                                                                       onCompleteHandler={completeTodo}
+                                                                      onEditHandler={editTodo}
                                                                       onDeleteHandler={deleteTodo}/>) : <p className="todoSectionEmpty">No pending tasks right now.</p>}
               </div>
 
