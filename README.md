@@ -182,8 +182,8 @@ Before running this project, make sure you have:
 Clone the repository and install dependencies in both the client and server.
 
 ```bash
-git clone <your-repository-url>
-cd <your-repository-folder>
+git clone https://github.com/Hxmmmd/todoProjectWithMernStack.git
+cd todoProjectWithMernStack
 ```
 
 ### Install frontend dependencies
@@ -347,8 +347,6 @@ Check that:
 
 ## Author
 
-Add your name or GitHub profile here.
+Hammad Hanif
 
-## License
 
-Add your preferred license here.
