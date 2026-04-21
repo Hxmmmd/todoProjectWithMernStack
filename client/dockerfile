@@ -14,6 +14,6 @@ RUN npm run build
 #stage 2: production 
 FROM nginx:alpine
 
-COPY --from=builder /client/dist /usr/share/ngnix/html
+COPY --from=builder /client/dist /usr/share/nginx/html
 
-CMD [ "ngnix", "-g", "daemon off" ]
+CMD [ "nginx", "-g", "daemon off;" ]

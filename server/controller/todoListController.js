@@ -1,6 +1,5 @@
 // importing mongoose schema for mongo db data base
-
-const Todos = require('../model/todos')
+const Todos = require('../model/Todos')
 
 const sendControllerError = (res, error, fallbackMessage) => {
     console.error(error)
