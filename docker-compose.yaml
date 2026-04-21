@@ -8,13 +8,13 @@ services:
     build: ./server
     environment:
       - MONGODB_URL=mongodb://mongo:27017/TodoProject
-      - CLIENT_URL=http://client:5173
+      - CLIENT_URL=http://localhost:5173
     ports:
       - "3000:3000"
   
   client:
     build: ./client
     environment:
-      - VITE_API_ENDPOINT_URL==http://server:3000/todos
+      - VITE_API_ENDPOINT_URL=http://localhost:3000/todos
     ports:
       - "5173:80"
