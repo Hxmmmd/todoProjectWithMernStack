@@ -7,7 +7,7 @@ let dotenv = require("dotenv")
 
 const app = express()
 dotenv.config()
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3000
 const MONGODB_URL = process.env.MONGODB_URL
 
 

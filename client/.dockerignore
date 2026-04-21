@@ -1,6 +1,5 @@
 node_modules
-Dockerfile
+dist
 .git
-.env
-.envExample
+Dockerfile
 .dockerignore

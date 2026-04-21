@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react"
 import Crud from "../model/todoMeathod"
 
-const URL = "http://localhost:3000/todos"
+const URL = import.meta.env.VITE_API_ENDPOINT_URL
 const CRUD = new Crud(URL)
 
 const useTodos = () => {
