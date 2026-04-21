@@ -57,6 +57,9 @@ todo project/
 │   │   ├── App.css
 │   │   ├── index.css
 │   │   └── main.jsx
+│   ├── .dockerignore
+│   ├── .env
+│   ├── Dockerfile
 │   ├── package.json
 │   └── vite.config.js
 ├── server/
@@ -64,7 +67,10 @@ todo project/
 │   ├── controller/
 │   ├── model/
 │   ├── routes/
+│   ├── .dockerignore
 │   ├── .envExample
+│   ├── .env
+│   ├── Dockerfile
 │   ├── index.js
 │   └── package.json
 └── README.md
@@ -176,8 +182,36 @@ Before running this project, make sure you have:
 - Node.js installed
 - npm installed
 - MongoDB installed locally, or a MongoDB Atlas connection string
+- **Docker & Docker Compose** (Optional, if you want to run via Docker)
 
-## Installation
+## Running with Docker (Recommended)
+
+You can easily run the entire project (Frontend, Backend, and MongoDB) using Docker Compose.
+
+1. Clone the repository:
+```bash
+git clone https://github.com/Hxmmmd/todoProjectWithMernStack.git
+cd todoProjectWithMernStack
+```
+
+2. Build and start all services using Docker Compose:
+```bash
+docker-compose up --build
+```
+
+This will automatically set up the MongoDB database, start the Express backend on port `3000`, and serve the React frontend on port `5173`.
+
+**Access the application:**
+- Frontend UI: [http://localhost:5173](http://localhost:5173)
+- Backend API: [http://localhost:3000](http://localhost:3000)
+
+To stop the containers, simply press `Ctrl+C` in your terminal or run `docker-compose down`.
+
+## Running the Project Locally
+
+If you prefer not to use Docker, you can run the project locally. You will need two terminals: one for the backend and one for the frontend.
+
+### Installation
 
 Clone the repository and install dependencies in both the client and server.
 
@@ -200,7 +234,7 @@ cd ../server
 npm install
 ```
 
-## Environment Variables
+### Environment Variables
 
 The backend uses environment variables from `server/.env`.
 
@@ -214,15 +248,11 @@ MONGODB_URL=mongodb://localhost:27017/TodoProject
 CLIENT_URL=http://localhost:5173
 ```
 
-### Variable explanation
+#### Variable explanation
 
 - `PORT`: the port used by the Express backend
 - `MONGODB_URL`: your MongoDB connection string
 - `CLIENT_URL`: the frontend URL allowed by CORS
-
-## Running the Project
-
-You need two terminals: one for the backend and one for the frontend.
 
 ### Start the backend
 
@@ -348,5 +378,3 @@ Check that:
 ## Author
 
 Hammad Hanif
-
-
