@@ -26,9 +26,6 @@ todoList.patch('/todos/:id', patchTodoController)
 // REST API endpoint for delete todo
 todoList.delete('/todos/:id', deleteTodoController)
 
-
-
-
 //todo health check route
 todoList.get('/todos/health',(req,res)=>{
     res.json({message: "every think is working and good"})
