@@ -20,11 +20,19 @@ todoList.get('/todos', getTodosController )
 // REST API endpoint for Creating todo
 todoList.post('/todos', postTodoController)
 
+// REST API endpoint for pactch update todo
+todoList.patch('/todos/:id', patchTodoController)
+
 // REST API endpoint for delete todo
 todoList.delete('/todos/:id', deleteTodoController)
 
 
-// REST API endpoint for pactch update todo
-todoList.patch('/todos/:id', patchTodoController)
+
+
+//todo health check route
+todoList.get('/todos/health',(req,res)=>{
+    res.json({message: "every think is working and good"})
+})
+
 
 module.exports = todoList
